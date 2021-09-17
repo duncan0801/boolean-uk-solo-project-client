@@ -10,13 +10,17 @@ function HomePage() {
 				<div className="tabs">
 					<ul>
 						<li
-							className={tabIndex === 1 ? "active-tab" : ""}
+							className={
+								tabIndex === 1 ? "active-tab" : "inactive-tab"
+							}
 							onClick={() => setTabIndex(1)}
 						>
 							Anonymous login
 						</li>
 						<li
-							className={tabIndex === 2 ? "active-tab" : ""}
+							className={
+								tabIndex === 2 ? "active-tab" : "inactive-tab"
+							}
 							onClick={() => setTabIndex(2)}
 						>
 							Authenticated login
