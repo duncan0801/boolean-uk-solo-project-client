@@ -1,0 +1,28 @@
+section {
+	background-color: var(--section-background-color);
+	height: 80vh;
+	border-radius: 20px;
+
+	margin: 20px;
+}
+
+.lobby-container {
+	display: grid;
+	height: 100vh;
+	gap: 10px;
+	grid-template-columns: 1fr 2fr 1fr;
+	justify-content: center;
+	place-content: center;
+}
+
+.lobby-container h2 {
+	text-align: center;
+	color: white;
+}
+
+.section-container {
+	border: 3px solid var(--section-border-color);
+	margin: 30px;
+	height: calc(100% - 60px);
+	border-radius: 30px;
+}
