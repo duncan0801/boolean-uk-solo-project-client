@@ -1,3 +1,5 @@
+import AnonymousLogin from "../components/AnonymousLogin";
+import AuthenticatedLogin from "../components/AuthenticatedLogin";
 import useStore from "../store";
 import "../styles/homePage.css";
 
@@ -36,7 +38,7 @@ function HomePage() {
 								: "content anonymous-login"
 						}
 					>
-						<h2>Anonymous Login</h2>
+						<AnonymousLogin />
 					</div>
 					<div
 						className={
@@ -45,7 +47,7 @@ function HomePage() {
 								: "content authenticated-login"
 						}
 					>
-						<h2>Authenticated Login</h2>
+						<AuthenticatedLogin />
 					</div>
 				</div>
 			</div>
