@@ -1,6 +1,6 @@
 function Players() {
 	return (
-		<section className="players-section">
+		<section className="lobby-section players-section">
 			<div class="section-container">
 				<h2>Players</h2>
 			</div>

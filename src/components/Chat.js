@@ -1,6 +1,6 @@
 function Chat() {
 	return (
-		<section className="chat-section">
+		<section className="lobby-section chat-section">
 			<div class="section-container">
 				<h2>Chat</h2>
 			</div>
