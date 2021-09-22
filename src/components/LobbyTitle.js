@@ -3,16 +3,16 @@ import useStore from "../store";
 import { baseURL } from "../globals";
 
 function LobbyTitle() {
-	const lobbyUsers = useStore((state) => state.lobbyUsers);
+	const lobbyId = useStore((state) => state.lobbyId);
 
-	//fetch the lobby users here
 
-	return (
-		<section className="lobby-title-section">
-			<h1>Lobby Id: {}</h1>
-		</section>
-	);
-
+	if (lobbyId) {
+		return (
+			<section className="lobby-title-section">
+				<h1>Lobby Id: {lobbyId}</h1>
+			</section>
+		);
+	}
 	return <h2>Loading...</h2>;
 }
 

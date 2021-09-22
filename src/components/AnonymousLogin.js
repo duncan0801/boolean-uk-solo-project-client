@@ -31,14 +31,15 @@ function AnonymousLogin() {
 		// 	console.log("Create Lobby return:", data);
 		// 	// setLobbyUsers(data.newLobby.users);
 		// });
-        console.log(createLobby(postBody))
+        setLobbyId(lobbyId);
+
+		createLobby(postBody).then(() => history.push(`/lobby/${lobbyId}`));
 		// 2. update the lobbyId in the state
-		setLobbyId(lobbyId);
+		
 
 		// 3. Connect the user to the websocket room
 
 		// 4. Redirect them to the page with the lobbyId in the URL
-		history.push(`/lobby/${lobbyId}`);
 	}
 	function handleOnChange(event) {
 		setAnonymousUsername(event.target.value);

@@ -20,6 +20,8 @@ const useStore = create(
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
 
 		//LOBBIES
+		lobbyHasBenCreated: false,
+		setLobbyHasBeenCreated: (value) => set({ lobbyHasBenCreated: value }),
 		lobbyUsers: null,
 		setLobbyUsers: (users) => set({ lobbyUsers: users }),
 		fetchLobbyById: (lobbyId) => {
@@ -29,6 +31,11 @@ const useStore = create(
 						throw Error(res.statusText);
 					}
 					return res.json();
+				})
+				.then((lobby) => {
+					get().setLobbyUsers(lobby.users);
+					get().setLobbyId(lobby.id);
+					get().setLobbyHasBeenCreated(true);
 				})
 				.catch((error) => {
 					console.error(error);
@@ -48,6 +55,9 @@ const useStore = create(
 					}
 					return res.json();
 				})
+				.then((lobby) => {
+					get().setLobbyId(lobby.id);
+				})
 				.catch((error) => {
 					console.error(error);
 				});
@@ -56,7 +66,7 @@ const useStore = create(
 			fetch(`http://localhost:8000/users/${lobbyId}`);
 		},
 		addUserToLobby: (body) => {
-			return fetch(`http://localhost:8000/lobbies`, {
+			return fetch(`http://localhost:8000/users`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -67,7 +77,6 @@ const useStore = create(
 					if (!res.ok) {
 						throw Error(res.statusText);
 					}
-					console.log("user added", res.json());
 					return res.json();
 				})
 				.catch((error) => {

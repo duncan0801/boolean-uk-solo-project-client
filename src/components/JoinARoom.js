@@ -1,6 +1,8 @@
+import { useHistory } from "react-router";
 import useStore from "../store";
 
 function JoinARoom() {
+	const history = useHistory();
 	const setRequestedLobbyId = useStore((state) => state.setRequestedLobbyId);
 	const requestedLobbyId = useStore((state) => state.requestedLobbyId);
 	const addUserToLobby = useStore((state) => state.addUserToLobby);
@@ -24,7 +26,10 @@ function JoinARoom() {
 		};
 
 		// 1. Add the user to the lobby, making sure their name is unique
-		addUserToLobby(reqBody).then((data) => console.log(data));
+		addUserToLobby(reqBody).then((data) => {
+			history.push(`/lobby/${requestedLobbyId}`);
+			console.log(data);
+		});
 		// 2. If response is okay then direct them to the right lobby
 	}
 	return (
