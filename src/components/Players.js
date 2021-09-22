@@ -3,20 +3,23 @@ import useStore from "../store";
 import { baseURL } from "../globals";
 
 function Players() {
-	const setUsers = useStore((state) => state.setUsers);
-	const users = useStore((state) => state.lobbyUsers);
+	const lobbyUsers = useStore((state) => state.lobbyUsers);
 
-	
+	//fetch the lobby users here
+
+	if (lobbyUsers) {
 	return (
 		<section className="lobby-section players-section">
-			<div class="section-container">
+			<div className="section-container">
 				<h2>Players</h2>
-				{users.map((user) => {
-					return <h3>user.userName</h3>;
-				})}
+				{lobbyUsers.map((user) => {
+						return <h3>{user.userName}</h3>;
+					})}
 			</div>
 		</section>
 	);
+	}
+	return <h2>Loading...</h2>;
 }
 
 export default Players;

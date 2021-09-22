@@ -1,5 +1,5 @@
 import AnonymousLogin from "../components/AnonymousLogin";
-import AuthenticatedLogin from "../components/AuthenticatedLogin";
+import AuthenticatedLogin from "../components/JoinARoom";
 import useStore from "../store";
 import "../styles/homePage.css";
 
@@ -25,7 +25,7 @@ function HomePage() {
 							}
 							onClick={() => setTabIndex(2)}
 						>
-							Authenticated login
+							Join A room
 						</li>
 					</ul>
 				</div>

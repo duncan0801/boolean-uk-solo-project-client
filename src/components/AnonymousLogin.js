@@ -1,7 +1,7 @@
 import { socket } from "../App";
 import useStore from "../store";
 import { genericPost, genericFetch } from "../globals";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const { v4: uuidv4 } = require("uuid");
 
 function AnonymousLogin() {
@@ -14,6 +14,7 @@ function AnonymousLogin() {
 	const setLobbyId = useStore((state) => state.setLobbyId);
 	const fetchLobbyById = useStore((state) => state.fetchLobbyById);
 	const createLobby = useStore((state) => state.createLobby);
+	const setLobbyUsers = useStore((state) => state.setLobbyUsers);
 
 	function handleOnSubmit(event, socket) {
 		event.preventDefault();
@@ -24,18 +25,20 @@ function AnonymousLogin() {
 		};
 		// genericPost("/lobbies", postBody);
 		// genericFetch("/lobbies");
-		
-		
-		// 1. Generate a lobby in the database with the id and the user in the usernames
-        createLobby(postBody);
 
+		// 1. Generate a lobby in the database with the id and the user in the usernames
+		// createLobby(postBody).then((data) => {
+		// 	console.log("Create Lobby return:", data);
+		// 	// setLobbyUsers(data.newLobby.users);
+		// });
+        console.log(createLobby(postBody))
 		// 2. update the lobbyId in the state
 		setLobbyId(lobbyId);
 
 		// 3. Connect the user to the websocket room
 
 		// 4. Redirect them to the page with the lobbyId in the URL
-        history.push(`/lobby/${lobbyId}`);
+		history.push(`/lobby/${lobbyId}`);
 	}
 	function handleOnChange(event) {
 		setAnonymousUsername(event.target.value);

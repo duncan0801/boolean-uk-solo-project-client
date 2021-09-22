@@ -5,14 +5,31 @@
 
 	margin: 20px;
 }
+.lobby-title-section {
+	grid-area: title;
+	text-align: center;
+
+	height: 20px;
+}
+.players-section {
+	grid-area: players;
+}
+.games-section {
+	grid-area: games;
+}
+.chat-section {
+	grid-area: chat;
+}
 
 .lobby-container {
 	display: grid;
 	height: 100vh;
 	gap: 10px;
-	grid-template-columns: 1fr 2fr 1fr;
-	justify-content: center;
-	place-content: center;
+	grid-template-areas:
+		"title title title"
+		"players games chat";
+	/* justify-content: center;
+	place-content: center; */
 }
 
 .lobby-container h2 {
