@@ -20,6 +20,8 @@ const useStore = create(
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
 
 		//LOBBIES
+		currentUserId: null,
+		setCurrentUserId: (id) => set({ currentUserId: id }),
 		lobbyHasBenCreated: false,
 		setLobbyHasBeenCreated: (value) => set({ lobbyHasBenCreated: value }),
 		lobbyUsers: null,
@@ -33,6 +35,7 @@ const useStore = create(
 					return res.json();
 				})
 				.then((lobby) => {
+					console.log("users", lobby.users);
 					get().setLobbyUsers(lobby.users);
 					get().setLobbyId(lobby.id);
 					get().setLobbyHasBeenCreated(true);
@@ -78,6 +81,52 @@ const useStore = create(
 						throw Error(res.statusText);
 					}
 					return res.json();
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		},
+
+		// CHAT
+		messageTextField: "",
+		setMessageTextField: (text) => set({ messageTextField: text }),
+		messages: [],
+		setMessages: (messages) => set({ messages: messages }),
+		postAMessage: (body) => {
+			return fetch(`http://localhost:8000/messages`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			})
+				.then((res) => {
+					if (!res.ok) {
+						throw Error(res.statusText);
+					}
+					return res.json();
+				})
+				.then((data) => {
+					const messages = get().messages;
+					const setMessages = get().setMessages;
+
+					setMessages([...messages, data]);
+					console.log("setting messages", [...get().messages, data]);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		},
+		fetchLobbyMessages: (lobbyId) => {
+			fetch(`http://localhost:8000/messages/${lobbyId}`)
+				.then((res) => {
+					if (!res.ok) {
+						throw Error(res.statusText);
+					}
+					return res.json();
+				})
+				.then((messages) => {
+					get().setMessages(messages);
 				})
 				.catch((error) => {
 					console.error(error);

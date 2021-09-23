@@ -1,0 +1,46 @@
+.chat-section .messages-container {
+	overflow-y: scroll;
+}
+
+.chat-section .section-container {
+	display: grid;
+	grid-template-rows: 1fr 5fr 1fr;
+}
+.chat-section form {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	place-items: center;
+	margin: 10px;
+}
+.chat-section form textarea {
+	resize: none;
+	width: 100%;
+	border: none;
+	border-radius: 10px;
+	background: #ffffffc9;
+}
+.chat-section form button {
+	width: 100%;
+	border: none;
+	background: none;
+}
+
+.message-bubble {
+	border-radius: 5px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background: rgba(0, 128, 128, 0.678);
+	margin: 10px 5px;
+}
+
+.message-bubble .username {
+	font-weight: bold;
+	font-size: 10px;
+	margin-bottom: 0;
+}
+
+.message-bubble .message-content {
+	margin-top: 0;
+}

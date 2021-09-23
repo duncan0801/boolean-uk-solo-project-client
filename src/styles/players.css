@@ -1,0 +1,15 @@
+.player-slot-container {
+	display: grid;
+	gap: 5px;
+	padding: 5px;
+}
+
+.player-slot {
+	border: rgba(0, 0, 0, 0.404) solid 2px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	background: rgba(0, 0, 0, 0.404);
+	color: #d5b3db;
+	display: grid;
+	place-content: center;
+}

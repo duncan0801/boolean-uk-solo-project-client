@@ -24,6 +24,7 @@ function JoinARoom() {
 			lobbyId: requestedLobbyId,
 			userName: anonymousUsername,
 		};
+        localStorage.setItem("user", JSON.stringify(anonymousUsername));
 
 		// 1. Add the user to the lobby, making sure their name is unique
 		addUserToLobby(reqBody).then((data) => {

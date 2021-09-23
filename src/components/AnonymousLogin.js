@@ -23,6 +23,7 @@ function AnonymousLogin() {
 			lobbyId: lobbyId,
 			userName: anonymousUsername,
 		};
+		localStorage.setItem("user", JSON.stringify(anonymousUsername));
 		// genericPost("/lobbies", postBody);
 		// genericFetch("/lobbies");
 
@@ -31,11 +32,10 @@ function AnonymousLogin() {
 		// 	console.log("Create Lobby return:", data);
 		// 	// setLobbyUsers(data.newLobby.users);
 		// });
-        setLobbyId(lobbyId);
+		setLobbyId(lobbyId);
 
 		createLobby(postBody).then(() => history.push(`/lobby/${lobbyId}`));
 		// 2. update the lobbyId in the state
-		
 
 		// 3. Connect the user to the websocket room
 
