@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParams } from "react-router";
 import useStore from "../store";
 import "../styles/chat.css";
 
@@ -14,9 +15,9 @@ function MessageBubble({ userName, content }) {
 }
 
 function Chat() {
+	const { lobbyId } = useParams();
 	const messageTextField = useStore((state) => state.messageTextField);
 	const setMessageTextField = useStore((state) => state.setMessageTextField);
-	const lobbyId = useStore((state) => state.lobbyId);
 	const postAMessage = useStore((state) => state.postAMessage);
 	const messages = useStore((state) => state.messages);
 	const lobbyUsers = useStore((state) => state.lobbyUsers);
@@ -28,8 +29,8 @@ function Chat() {
 
 	function handleOnSubmit(event) {
 		event.preventDefault();
-		const userAsJSON = localStorage.getItem("user");
 
+		const userAsJSON = localStorage.getItem("user");
 		const userName = JSON.parse(userAsJSON);
 
 		const postBody = {
@@ -44,27 +45,35 @@ function Chat() {
 
 		//2. If successful, update the message state
 	}
-
 	function handleOnChange(event) {
 		setMessageTextField(event.target.value);
 	}
 	if (lobbyUsers && messages) {
+		console.log("Messages from Chat:", messages);
 		return (
 			<section className="lobby-section chat-section">
 				<div className="section-container">
 					<h2>Chat</h2>
 					<div className="messages-container">
-						{messages.map((message) => {
-							const userForMessage = lobbyUsers.find((user) => {
-								return user.id === message.userId;
-							});
-							return (
-								<MessageBubble
-									userName={userForMessage.userName}
-									content={message.content}
-								/>
-							);
-						})}
+						{messages
+							? messages.map((message) => {
+									const userForMessage = lobbyUsers.find(
+										(user) => {
+											return user.id === message.userId;
+										}
+									);
+									console.log(
+										"userForMessage:",
+										userForMessage
+									);
+									return (
+										<MessageBubble
+											userName={userForMessage.userName}
+											content={message.content}
+										/>
+									);
+							  })
+							: null}
 					</div>
 					<form onSubmit={handleOnSubmit}>
 						<textarea
@@ -90,7 +99,7 @@ function Chat() {
 			</section>
 		);
 	}
-    return <h2>Loading...</h2>
+	return <h2>Loading...</h2>;
 }
 
 export default Chat;

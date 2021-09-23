@@ -12,9 +12,8 @@ function AnonymousLogin() {
 	);
 	const lobbyId = useStore((state) => state.lobbyId);
 	const setLobbyId = useStore((state) => state.setLobbyId);
-	const fetchLobbyById = useStore((state) => state.fetchLobbyById);
 	const createLobby = useStore((state) => state.createLobby);
-	const setLobbyUsers = useStore((state) => state.setLobbyUsers);
+	
 
 	function handleOnSubmit(event, socket) {
 		event.preventDefault();
@@ -32,9 +31,12 @@ function AnonymousLogin() {
 		// 	console.log("Create Lobby return:", data);
 		// 	// setLobbyUsers(data.newLobby.users);
 		// });
-		setLobbyId(lobbyId);
 
-		createLobby(postBody).then(() => history.push(`/lobby/${lobbyId}`));
+		createLobby(postBody)
+			.then(() => {
+				setLobbyId(lobbyId);
+			})
+			.then(() => history.push(`/lobby/${lobbyId}`));
 		// 2. update the lobbyId in the state
 
 		// 3. Connect the user to the websocket room

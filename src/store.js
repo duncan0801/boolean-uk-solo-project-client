@@ -36,8 +36,10 @@ const useStore = create(
 				})
 				.then((lobby) => {
 					console.log("users", lobby.users);
+					console.log("Lobby:", lobby);
 					get().setLobbyUsers(lobby.users);
 					get().setLobbyId(lobby.id);
+					get().setMessages(lobby.messages);
 					get().setLobbyHasBeenCreated(true);
 				})
 				.catch((error) => {
@@ -109,9 +111,16 @@ const useStore = create(
 				.then((data) => {
 					const messages = get().messages;
 					const setMessages = get().setMessages;
-
-					setMessages([...messages, data]);
-					console.log("setting messages", [...get().messages, data]);
+					console.log("data", data);
+					if (messages.length === 0) {
+						setMessages([data]);
+					} else {
+						setMessages([...messages, data]);
+						console.log("setting messages", [
+							...get().messages,
+							data,
+						]);
+					}
 				})
 				.catch((error) => {
 					console.error(error);
