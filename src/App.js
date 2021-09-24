@@ -1,7 +1,7 @@
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import socketClient from "socket.io-client";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LobbyPage from "./pages/LobbyPage";
 const { v4: uuidv4 } = require("uuid");
 const SERVER = "http://localhost:8000";

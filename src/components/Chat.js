@@ -24,6 +24,7 @@ function Chat() {
 	const fetchLobbyMessages = useStore((state) => state.fetchLobbyMessages);
 
 	useEffect(() => {
+		console.log(lobbyId);
 		fetchLobbyMessages(lobbyId);
 	}, []);
 
@@ -38,12 +39,8 @@ function Chat() {
 			lobbyId: lobbyId,
 			content: messageTextField,
 		};
-		postAMessage(postBody).then((data) => {
-			console.log("frontend", data);
-		});
-		//1. Post the message to the DB
-
-		//2. If successful, update the message state
+		postAMessage(postBody).then((data) => {});
+		setMessageTextField("");
 	}
 	function handleOnChange(event) {
 		setMessageTextField(event.target.value);
@@ -55,25 +52,21 @@ function Chat() {
 				<div className="section-container">
 					<h2>Chat</h2>
 					<div className="messages-container">
-						{messages
-							? messages.map((message) => {
-									const userForMessage = lobbyUsers.find(
-										(user) => {
-											return user.id === message.userId;
-										}
-									);
-									console.log(
-										"userForMessage:",
-										userForMessage
-									);
-									return (
-										<MessageBubble
-											userName={userForMessage.userName}
-											content={message.content}
-										/>
-									);
-							  })
-							: null}
+						{messages.map((message) => {
+							const userForMessage = lobbyUsers.find((user) => {
+								return user.id === message.userId;
+							});
+							if (userForMessage) {
+								return (
+									<MessageBubble
+										userName={userForMessage.userName}
+										content={message.content}
+									/>
+								);
+							} else {
+								return null;
+							}
+						})}
 					</div>
 					<form onSubmit={handleOnSubmit}>
 						<textarea

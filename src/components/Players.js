@@ -3,9 +3,12 @@ import useStore from "../store";
 import { baseURL } from "../globals";
 import "../styles/players.css";
 
-function PlayerSlot({ name }) {
+function PlayerSlot({ name, avatarURL }) {
 	return (
 		<div className="player-slot">
+			<div className="image-container">
+				<img src={avatarURL} alt={`${name} robot`} />
+			</div>
 			<p>{name}</p>
 		</div>
 	);
@@ -23,7 +26,13 @@ function Players() {
 					<h2>Players</h2>
 					<div className="player-slot-container">
 						{lobbyUsers.map((user) => {
-							return <PlayerSlot name={user.userName} />;
+							return (
+								<PlayerSlot
+									key={user.userName}
+									name={user.userName}
+									avatarURL={user.avatarURL}
+								/>
+							);
 						})}
 					</div>
 				</div>

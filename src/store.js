@@ -20,6 +20,8 @@ const useStore = create(
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
 
 		//LOBBIES
+        leaveModal: false,
+        setLeaveModal: (value) => set({leaveModal: value}),
 		currentUserId: null,
 		setCurrentUserId: (id) => set({ currentUserId: id }),
 		lobbyHasBenCreated: false,
@@ -35,12 +37,8 @@ const useStore = create(
 					return res.json();
 				})
 				.then((lobby) => {
-					console.log("users", lobby.users);
-					console.log("Lobby:", lobby);
 					get().setLobbyUsers(lobby.users);
 					get().setLobbyId(lobby.id);
-					get().setMessages(lobby.messages);
-					get().setLobbyHasBeenCreated(true);
 				})
 				.catch((error) => {
 					console.error(error);
@@ -116,10 +114,6 @@ const useStore = create(
 						setMessages([data]);
 					} else {
 						setMessages([...messages, data]);
-						console.log("setting messages", [
-							...get().messages,
-							data,
-						]);
 					}
 				})
 				.catch((error) => {
@@ -129,13 +123,17 @@ const useStore = create(
 		fetchLobbyMessages: (lobbyId) => {
 			fetch(`http://localhost:8000/messages/${lobbyId}`)
 				.then((res) => {
+					console.log(res);
 					if (!res.ok) {
 						throw Error(res.statusText);
 					}
 					return res.json();
 				})
 				.then((messages) => {
-					get().setMessages(messages);
+					console.log("messages,store", messages);
+					const setMessages = get().setMessages;
+					setMessages(messages);
+					return messages;
 				})
 				.catch((error) => {
 					console.error(error);

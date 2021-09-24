@@ -1,6 +1,5 @@
 import { socket } from "../App";
 import useStore from "../store";
-import { genericPost, genericFetch } from "../globals";
 import { useHistory } from "react-router-dom";
 const { v4: uuidv4 } = require("uuid");
 
@@ -13,30 +12,37 @@ function AnonymousLogin() {
 	const lobbyId = useStore((state) => state.lobbyId);
 	const setLobbyId = useStore((state) => state.setLobbyId);
 	const createLobby = useStore((state) => state.createLobby);
-	
 
 	function handleOnSubmit(event, socket) {
 		event.preventDefault();
 		const lobbyId = uuidv4();
-		const postBody = {
-			lobbyId: lobbyId,
-			userName: anonymousUsername,
-		};
-		localStorage.setItem("user", JSON.stringify(anonymousUsername));
-		// genericPost("/lobbies", postBody);
-		// genericFetch("/lobbies");
+		let avatarURL = "";
 
-		// 1. Generate a lobby in the database with the id and the user in the usernames
-		// createLobby(postBody).then((data) => {
-		// 	console.log("Create Lobby return:", data);
-		// 	// setLobbyUsers(data.newLobby.users);
-		// });
+		fetch(`
+        https://robohash.org/${anonymousUsername}`).then((response) => {
+			const postBody = {
+				lobbyId: lobbyId,
+				userName: anonymousUsername,
+				avatarURL: response.url,
+			};
+			localStorage.setItem("user", JSON.stringify(anonymousUsername));
+			// genericPost("/lobbies", postBody);
+			// genericFetch("/lobbies");
 
-		createLobby(postBody)
-			.then(() => {
-				setLobbyId(lobbyId);
-			})
-			.then(() => history.push(`/lobby/${lobbyId}`));
+			// 1. Generate a lobby in the database with the id and the user in the usernames
+			// createLobby(postBody).then((data) => {
+			// 	console.log("Create Lobby return:", data);
+			// 	// setLobbyUsers(data.newLobby.users);
+			// });
+
+			createLobby(postBody)
+				.then((response) => {
+					console.log("response from create lobby", response);
+					setLobbyId(lobbyId);
+				})
+				.then(() => history.push(`/lobby/${lobbyId}`));
+		});
+
 		// 2. update the lobbyId in the state
 
 		// 3. Connect the user to the websocket room
