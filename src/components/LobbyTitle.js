@@ -8,7 +8,7 @@ function LobbyTitle() {
 
 	function handleGetLobbyLinkOnClick() {
 		const link = `htttp://localhost:3000/${lobbyId}`;
-		navigator.clipboard.writeText(`htttp://localhost:3000/${lobbyId}`);
+		navigator.clipboard.writeText(`http://localhost:3000/${lobbyId}`);
 		alert(`${link} copied to clipboard`);
 	}
 

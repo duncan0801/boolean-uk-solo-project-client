@@ -1,4 +1,5 @@
 import AnonymousLogin from "../components/AnonymousLogin";
+import JoinARoom from "../components/JoinARoom";
 import AuthenticatedLogin from "../components/JoinARoom";
 import useStore from "../store";
 import "../styles/homePage.css";
@@ -47,7 +48,7 @@ function HomePage() {
 								: "content authenticated-login"
 						}
 					>
-						<AuthenticatedLogin />
+						<JoinARoom />
 					</div>
 				</div>
 			</div>

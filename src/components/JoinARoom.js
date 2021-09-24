@@ -20,17 +20,24 @@ function JoinARoom() {
 	function handleOnSubmit(event) {
 		event.preventDefault();
 
-		const reqBody = {
-			lobbyId: requestedLobbyId,
-			userName: anonymousUsername,
-		};
-        localStorage.setItem("user", JSON.stringify(anonymousUsername));
+		fetch(`
+        https://robohash.org/${anonymousUsername}`).then((response) => {
+			const reqBody = {
+				lobbyId: requestedLobbyId,
+				userName: anonymousUsername,
+				avatarURL: response.url,
+			};
+			localStorage.setItem("user", JSON.stringify(anonymousUsername));
 
-		// 1. Add the user to the lobby, making sure their name is unique
-		addUserToLobby(reqBody).then((data) => {
-			history.push(`/lobby/${requestedLobbyId}`);
-			console.log(data);
+			addUserToLobby(reqBody).then((data) => {
+				if (data) {
+					history.push(`/lobby/${requestedLobbyId}`);
+                    console.log(data);
+				}
+				console.log(data);
+			});
 		});
+
 		// 2. If response is okay then direct them to the right lobby
 	}
 	return (
