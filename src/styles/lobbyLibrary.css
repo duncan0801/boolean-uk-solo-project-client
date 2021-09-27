@@ -1,0 +1,12 @@
+.lobby-library-container {
+	background-color: var(--section-background-color);
+	height: 80vh;
+	border-radius: 20px;
+	margin: 20px;
+	display: grid;
+	place-items: center;
+}
+
+.lobby-slot {
+	border: black 1px solid;
+}

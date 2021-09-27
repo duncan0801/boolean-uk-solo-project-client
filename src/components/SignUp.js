@@ -1,3 +1,4 @@
+import { useHistory } from "react-router";
 import useStore from "../store";
 
 function SignUp() {
@@ -6,6 +7,7 @@ function SignUp() {
 	const passwordField = useStore((state) => state.passwordField);
 	const setPasswordField = useStore((state) => state.setPasswordField);
 	const userSignUp = useStore((state) => state.userSignUp);
+	const history = useHistory();
 
 	function handleOnSubmit(event) {
 		event.preventDefault();
@@ -15,7 +17,9 @@ function SignUp() {
 			password: passwordField,
 			avatarURL: `https://robohash.org/${usernameField}`,
 		};
-		userSignUp(userBody);
+		userSignUp(userBody).then(() => {
+			history.push("/lobbies");
+		});
 	}
 	return (
 		<form onSubmit={handleOnSubmit}>

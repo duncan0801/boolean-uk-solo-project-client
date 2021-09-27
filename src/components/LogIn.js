@@ -1,3 +1,4 @@
+import { useHistory } from "react-router";
 import useStore from "../store";
 
 function LogIn() {
@@ -6,6 +7,7 @@ function LogIn() {
 	const passwordField = useStore((state) => state.passwordField);
 	const setPasswordField = useStore((state) => state.setPasswordField);
 	const userLogIn = useStore((state) => state.userLogIn);
+	const history = useHistory();
 
 	function handleOnSubmit(event) {
 		event.preventDefault();
@@ -14,8 +16,9 @@ function LogIn() {
 			password: passwordField,
 		};
 
-		userLogIn(userBody);
-
+		userLogIn(userBody).then(() => {
+			history.push("/lobbies");
+		});
 	}
 	return (
 		<form onSubmit={handleOnSubmit}>

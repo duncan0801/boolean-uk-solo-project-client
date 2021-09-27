@@ -1,3 +1,4 @@
+import { useHistory } from "react-router";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import {
@@ -6,7 +7,6 @@ import {
 	genericPost,
 	handleErrors,
 } from "./globals";
-
 const useStore = create(
 	devtools((set, get) => ({
 		//AUTH
@@ -111,7 +111,7 @@ const useStore = create(
 		},
 		userSignUp: (body) => {
 			console.log("Body into create user function", body);
-			fetch(`http://localhost:8000/signup`, {
+			return fetch(`http://localhost:8000/signup`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -133,7 +133,7 @@ const useStore = create(
 		},
 		userLogIn: (body) => {
 			console.log("Body into create user function", body);
-			fetch(`http://localhost:8000/login`, {
+			return fetch(`http://localhost:8000/login`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -142,14 +142,14 @@ const useStore = create(
 			})
 				.then((res) => res.json())
 				.then((data) => {
-                    if(data) {
-                        get().setAuthenticatedUser(data)
+					if (data) {
+						get().setAuthenticatedUser(data);
 
-                        localStorage.setItem("user", JSON.stringify(data));
+						localStorage.setItem("user", JSON.stringify(data));
 
-                        //Push to their lobby library
-                    }
-                });
+						//Push to their lobby library
+					}
+				});
 		},
 
 		// CHAT
