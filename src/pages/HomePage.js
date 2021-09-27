@@ -1,6 +1,8 @@
 import AnonymousLogin from "../components/AnonymousLogin";
 import JoinARoom from "../components/JoinARoom";
 import AuthenticatedLogin from "../components/JoinARoom";
+import LogIn from "../components/LogIn";
+import SignIn from "../components/SignIn";
 import useStore from "../store";
 import "../styles/homePage.css";
 
@@ -18,7 +20,7 @@ function HomePage() {
 							}
 							onClick={() => setTabIndex(1)}
 						>
-							Anonymous login
+							Sign In
 						</li>
 						<li
 							className={
@@ -26,7 +28,7 @@ function HomePage() {
 							}
 							onClick={() => setTabIndex(2)}
 						>
-							Join A room
+							Log In
 						</li>
 					</ul>
 				</div>
@@ -39,7 +41,8 @@ function HomePage() {
 								: "content anonymous-login"
 						}
 					>
-						<AnonymousLogin />
+						{/* <AnonymousLogin /> */}
+						<SignIn />
 					</div>
 					<div
 						className={
@@ -48,7 +51,8 @@ function HomePage() {
 								: "content authenticated-login"
 						}
 					>
-						<JoinARoom />
+						{/* <JoinARoom /> */}
+						<LogIn />
 					</div>
 				</div>
 			</div>

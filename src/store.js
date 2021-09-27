@@ -9,6 +9,10 @@ import {
 
 const useStore = create(
 	devtools((set, get) => ({
+		//AUTH
+		authenticatedUser: null,
+		setAuthenticatedUser: (user) => set({ authenticatedUser: user }),
+        
 		//HOME PAGE
 		tabIndex: 1,
 		setTabIndex: (tabIndex) => set({ tabIndex: tabIndex }),
@@ -20,10 +24,10 @@ const useStore = create(
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
 
 		//LOBBIES
-        leaveModal: false,
-        setLeaveModal: (value) => set({leaveModal: value}),
-		currentUserId: null,
-		setCurrentUserId: (id) => set({ currentUserId: id }),
+		leaveModal: false,
+		setLeaveModal: (value) => set({ leaveModal: value }),
+		currentUser: null,
+		setCurrentUser: (user) => set({ currentUser: user }),
 		lobbyHasBenCreated: false,
 		setLobbyHasBeenCreated: (value) => set({ lobbyHasBenCreated: value }),
 		lobbyUsers: null,
@@ -85,6 +89,19 @@ const useStore = create(
 				.catch((error) => {
 					console.error(error);
 				});
+		},
+		removeUserFromLobby: (userId) => {
+			fetch(`http://localhost:8000/users/${userId}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}).then(() => {
+				const filteredUsers = get().lobbyUsers.filter(
+					(user) => user.id !== userId
+				);
+				get().setLobbyUsers(filteredUsers);
+			});
 		},
 
 		// CHAT

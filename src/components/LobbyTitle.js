@@ -5,6 +5,7 @@ import { baseURL } from "../globals";
 function LobbyTitle() {
 	const lobbyId = useStore((state) => state.lobbyId);
 	const setLeaveModal = useStore((state) => state.setLeaveModal);
+	const removeUserFromLobby = useStore((state) => state.removeUserFromLobby);
 
 	function handleGetLobbyLinkOnClick() {
 		const link = `htttp://localhost:3000/${lobbyId}`;
@@ -14,6 +15,7 @@ function LobbyTitle() {
 
 	function handleLeaveLobbyOnClick() {
 		// 1. Render a are you sure you want to leave the lobby modal
+        removeUserFromLobby()
 		setLeaveModal(true);
 	}
 	if (lobbyId) {
