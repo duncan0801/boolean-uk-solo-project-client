@@ -20,7 +20,7 @@ function HomePage() {
 							}
 							onClick={() => setTabIndex(1)}
 						>
-							Sign In
+							Sign Up
 						</li>
 						<li
 							className={

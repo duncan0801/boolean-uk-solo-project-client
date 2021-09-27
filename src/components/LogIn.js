@@ -5,19 +5,17 @@ function LogIn() {
 	const setUsernameField = useStore((state) => state.setUsernameField);
 	const passwordField = useStore((state) => state.passwordField);
 	const setPasswordField = useStore((state) => state.setPasswordField);
+	const userLogIn = useStore((state) => state.userLogIn);
 
 	function handleOnSubmit(event) {
 		event.preventDefault();
-		let userBody = {};
+		let userBody = {
+			username: usernameField,
+			password: passwordField,
+		};
 
-		fetch(`
-        https://robohash.org/${usernameField}`).then((avatarURL) => {
-			userBody = {
-				username: usernameField,
-				password: passwordField,
-				avatarURL: avatarURL,
-			};
-		});
+		userLogIn(userBody);
+
 	}
 	return (
 		<form onSubmit={handleOnSubmit}>

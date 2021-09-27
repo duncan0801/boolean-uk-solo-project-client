@@ -131,6 +131,26 @@ const useStore = create(
 					}
 				});
 		},
+		userLogIn: (body) => {
+			console.log("Body into create user function", body);
+			fetch(`http://localhost:8000/login`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+                    if(data) {
+                        get().setAuthenticatedUser(data)
+
+                        localStorage.setItem("user", JSON.stringify(data));
+
+                        //Push to their lobby library
+                    }
+                });
+		},
 
 		// CHAT
 		messageTextField: "",
