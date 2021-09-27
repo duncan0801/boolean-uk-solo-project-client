@@ -1,23 +1,21 @@
 import useStore from "../store";
 
-function LogIn() {
+function SignUp() {
 	const usernameField = useStore((state) => state.usernameField);
 	const setUsernameField = useStore((state) => state.setUsernameField);
 	const passwordField = useStore((state) => state.passwordField);
 	const setPasswordField = useStore((state) => state.setPasswordField);
+	const userSignUp = useStore((state) => state.userSignUp);
 
 	function handleOnSubmit(event) {
 		event.preventDefault();
-		let userBody = {};
 
-		fetch(`
-        https://robohash.org/${usernameField}`).then((avatarURL) => {
-			userBody = {
-				username: usernameField,
-				password: passwordField,
-				avatarURL: avatarURL,
-			};
-		});
+		const userBody = {
+			username: usernameField,
+			password: passwordField,
+			avatarURL: `https://robohash.org/${usernameField}`,
+		};
+		userSignUp(userBody);
 	}
 	return (
 		<form onSubmit={handleOnSubmit}>
@@ -39,9 +37,9 @@ function LogIn() {
 				onChange={(event) => setPasswordField(event.target.value)}
 				value={passwordField}
 			></input>
-			<button>Log In</button>
+			<button>Sign In</button>
 		</form>
 	);
 }
 
-export default LogIn;
+export default SignUp;

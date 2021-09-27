@@ -12,7 +12,13 @@ const useStore = create(
 		//AUTH
 		authenticatedUser: null,
 		setAuthenticatedUser: (user) => set({ authenticatedUser: user }),
-        
+		usernameField: "",
+		setUsernameField: (usernameString) =>
+			set({ usernameField: usernameString }),
+		passwordField: "",
+		setPasswordField: (passwordString) =>
+			set({ passwordField: passwordString }),
+
 		//HOME PAGE
 		tabIndex: 1,
 		setTabIndex: (tabIndex) => set({ tabIndex: tabIndex }),
@@ -102,6 +108,28 @@ const useStore = create(
 				);
 				get().setLobbyUsers(filteredUsers);
 			});
+		},
+		userSignUp: (body) => {
+			console.log("Body into create user function", body);
+			fetch(`http://localhost:8000/signup`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log("Sign up fetch:", data);
+
+					if (data) {
+						get().setAuthenticatedUser(data);
+
+						localStorage.setItem("user", JSON.stringify(data));
+
+						// Push to their lobby library
+					}
+				});
 		},
 
 		// CHAT

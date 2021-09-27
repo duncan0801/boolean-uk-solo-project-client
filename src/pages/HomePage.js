@@ -2,7 +2,7 @@ import AnonymousLogin from "../components/AnonymousLogin";
 import JoinARoom from "../components/JoinARoom";
 import AuthenticatedLogin from "../components/JoinARoom";
 import LogIn from "../components/LogIn";
-import SignIn from "../components/SignIn";
+import SignUp from "../components/SignUp";
 import useStore from "../store";
 import "../styles/homePage.css";
 
@@ -42,7 +42,7 @@ function HomePage() {
 						}
 					>
 						{/* <AnonymousLogin /> */}
-						<SignIn />
+						<SignUp />
 					</div>
 					<div
 						className={
