@@ -6,8 +6,10 @@ import { useEffect } from "react";
 
 function LobbySlot() {
 	return (
-		<Link className="lobby-slot">
-			<p>LobbyId:</p>
+		<Link to="">
+			<div className="lobby-slot">
+				<p>LobbyId:</p>
+			</div>
 		</Link>
 	);
 }
@@ -29,6 +31,14 @@ function LobbyLibrary() {
 				<div className="section-container">
 					<h2>Lobby Library</h2>
 					<div className="lobby-slot-container">
+						<LobbySlot />
+						<LobbySlot />
+						<LobbySlot />
+						<LobbySlot />
+						<LobbySlot />
+						<LobbySlot />
+						<LobbySlot />
+						<LobbySlot />
 						<LobbySlot />
 					</div>
 					<div className="buttons-container">
