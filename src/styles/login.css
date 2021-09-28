@@ -1,0 +1,26 @@
+.login-signup-form {
+	display: grid;
+	place-items: center;
+	height: 100%;
+}
+.form-container {
+	display: grid;
+	grid-template-rows: auto auto auto;
+	place-items: center;
+	gap: 10px;
+}
+
+.form-container input {
+	background-color: rgba(255, 255, 255, 0.747);
+	border-radius: 5px;
+	border: none;
+	height: 50px;
+}
+
+.form-container button {
+	border: none;
+	border-radius: 10px;
+	background-color: chartreuse;
+	width: 100px;
+	height: 30px;
+}

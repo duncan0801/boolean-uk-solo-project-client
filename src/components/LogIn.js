@@ -1,5 +1,6 @@
 import { useHistory } from "react-router";
 import useStore from "../store";
+import "../styles/login.css";
 
 function LogIn() {
 	const usernameField = useStore((state) => state.usernameField);
@@ -21,26 +22,28 @@ function LogIn() {
 		});
 	}
 	return (
-		<form onSubmit={handleOnSubmit}>
-			<input
-				type="text"
-				className="username"
-				id="username"
-				name="username"
-				placeholder="Username"
-				onChange={(event) => setUsernameField(event.target.value)}
-				value={usernameField}
-			></input>
-			<input
-				type="text"
-				className="password"
-				id="password"
-				name="password"
-				placeholder="Password"
-				onChange={(event) => setPasswordField(event.target.value)}
-				value={passwordField}
-			></input>
-			<button>Log In</button>
+		<form className="login-signup-form" onSubmit={handleOnSubmit}>
+			<div className="form-container">
+				<input
+					type="text"
+					className="username"
+					id="username"
+					name="username"
+					placeholder="Username"
+					onChange={(event) => setUsernameField(event.target.value)}
+					value={usernameField}
+				></input>
+				<input
+					type="text"
+					className="password"
+					id="password"
+					name="password"
+					placeholder="Password"
+					onChange={(event) => setPasswordField(event.target.value)}
+					value={passwordField}
+				></input>
+				<button>Log In</button>
+			</div>
 		</form>
 	);
 }

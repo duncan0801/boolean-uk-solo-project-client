@@ -7,6 +7,7 @@ import LobbyLibrary from "./pages/LobbyLibrary";
 import useStore from "./store";
 import NotAuthorized from "./pages/NotAuthorized";
 import { useEffect } from "react";
+import jwtDecode from "jwt-decode"
 const { v4: uuidv4 } = require("uuid");
 const SERVER = "http://localhost:8000";
 
@@ -29,9 +30,9 @@ function App() {
 	useEffect(() => {
 		if (authenticatedUser) return;
 
-		const userAsJSON = localStorage.getItem("user");
+		const token = localStorage.getItem("token");
 
-		const user = JSON.parse(userAsJSON);
+		const user = jwtDecode(token);
 		console.log(user);
 
 		if (user) {

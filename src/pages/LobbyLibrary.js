@@ -2,6 +2,7 @@ import "../styles/lobbyLibrary.css";
 import { Link } from "react-router-dom";
 import JoinLobbyModal from "../components/JoinLobbyModal";
 import useStore from "../store";
+import { useEffect } from "react";
 
 function LobbySlot() {
 	return (
@@ -14,6 +15,13 @@ function LobbySlot() {
 function LobbyLibrary() {
 	const requestedLobbyId = useStore((state) => state.requestedLobbyId);
 	const setRequestedLobbyId = useStore((state) => state.setRequestedLobbyId);
+	const getUserById = useStore((state) => state.getUserById);
+	const authenticatedUser = useStore((state) => state.authenticatedUser);
+
+	useEffect(() => {
+		console.log("authenticatedUser", authenticatedUser);
+		getUserById(authenticatedUser.id);
+	}, [authenticatedUser]);
 
 	return (
 		<>

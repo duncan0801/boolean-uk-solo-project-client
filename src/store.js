@@ -7,6 +7,9 @@ import {
 	genericPost,
 	handleErrors,
 } from "./globals";
+import jwtDecode from "jwt-decode";
+
+const tokenFromStorage = localStorage.getItem("token");
 const useStore = create(
 	devtools((set, get) => ({
 		//AUTH
@@ -30,6 +33,19 @@ const useStore = create(
 		//LOBBY LIBRARY
 		requestedLobbyId: "",
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
+		getUserById: (id) => {
+			fetch(`http://localhost:8000/users/${id}`, {
+				method: "GET",
+				headers: {
+					authorization: `Bearer ${tokenFromStorage}`,
+				},
+			})
+				.then((res) => res.json())
+				.then((user) => {
+					console.log("fetched user", user.msg);
+					get().setCurrentUser(user);
+				});
+		},
 
 		//LOBBIES
 		leaveModal: false,
@@ -122,12 +138,16 @@ const useStore = create(
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log("Sign up fetch:", data);
+					const token = data.token;
 
-					if (data) {
-						get().setAuthenticatedUser(data);
+					console.log("Sign up fetch:", token);
 
-						localStorage.setItem("user", JSON.stringify(data));
+					if (token) {
+						const user = jwtDecode(token);
+
+						get().setAuthenticatedUser(user);
+
+						localStorage.setItem("token", JSON.stringify(token));
 
 						// Push to their lobby library
 					}
@@ -143,11 +163,14 @@ const useStore = create(
 				body: JSON.stringify(body),
 			})
 				.then((res) => res.json())
-				.then((data) => {
-					if (data) {
-						get().setAuthenticatedUser(data);
+				.then((token) => {
+					if (token) {
+						console.log("token: ", token);
 
-						localStorage.setItem("user", JSON.stringify(data));
+						const user = jwtDecode(token);
+						get().setAuthenticatedUser(user);
+
+						localStorage.setItem("token", JSON.stringify(token));
 
 						//Push to their lobby library
 					}
