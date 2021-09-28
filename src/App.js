@@ -6,6 +6,7 @@ import LobbyPage from "./pages/LobbyPage";
 import LobbyLibrary from "./pages/LobbyLibrary";
 import useStore from "./store";
 import NotAuthorized from "./pages/NotAuthorized";
+import { useEffect } from "react";
 const { v4: uuidv4 } = require("uuid");
 const SERVER = "http://localhost:8000";
 
@@ -25,11 +26,18 @@ function App() {
 	// 	console.log(message);
 	// });
 	// // socket.join(uuidv4());
-	const user = localStorage.getItem("user");
+	useEffect(() => {
+		if (authenticatedUser) return;
 
-	if (user) {
-		setAuthenticatedUser(user);
-	}
+		const userAsJSON = localStorage.getItem("user");
+
+		const user = JSON.parse(userAsJSON);
+		console.log(user);
+
+		if (user) {
+			setAuthenticatedUser(user);
+		}
+	}, []);
 
 	return (
 		<main>

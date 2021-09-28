@@ -26,6 +26,8 @@ const useStore = create(
 		setLobbyId: (lobbyId) => set({ lobbyId: lobbyId }),
 		anonymousUsername: "",
 		setAnonymousUsername: (name) => set({ anonymousUsername: name }),
+
+		//LOBBY LIBRARY
 		requestedLobbyId: "",
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
 

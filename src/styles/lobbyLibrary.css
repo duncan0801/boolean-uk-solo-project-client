@@ -6,7 +6,16 @@
 	display: grid;
 	place-items: center;
 }
+.lobby-library-container .section-container {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
 
 .lobby-slot {
 	border: black 1px solid;
+}
+
+.buttons-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
