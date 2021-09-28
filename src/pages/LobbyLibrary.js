@@ -19,10 +19,13 @@ function LobbyLibrary() {
 	const setRequestedLobbyId = useStore((state) => state.setRequestedLobbyId);
 	const getUserById = useStore((state) => state.getUserById);
 	const authenticatedUser = useStore((state) => state.authenticatedUser);
+	const fetchLobbiesByUserId = useStore(
+		(state) => state.fetchLobbiesByUserId
+	);
 
 	useEffect(() => {
 		console.log("authenticatedUser", authenticatedUser);
-		getUserById(authenticatedUser.id);
+		fetchLobbiesByUserId();
 	}, [authenticatedUser]);
 
 	return (

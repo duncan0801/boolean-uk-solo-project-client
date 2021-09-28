@@ -7,7 +7,7 @@ import LobbyLibrary from "./pages/LobbyLibrary";
 import useStore from "./store";
 import NotAuthorized from "./pages/NotAuthorized";
 import { useEffect } from "react";
-import jwtDecode from "jwt-decode"
+import jwtDecode from "jwt-decode";
 const { v4: uuidv4 } = require("uuid");
 const SERVER = "http://localhost:8000";
 
@@ -31,12 +31,11 @@ function App() {
 		if (authenticatedUser) return;
 
 		const token = localStorage.getItem("token");
-
-		const user = jwtDecode(token);
-		console.log(user);
-
-		if (user) {
-			setAuthenticatedUser(user);
+		if (token) {
+			const user = jwtDecode(token);
+			if (user) {
+				setAuthenticatedUser(user);
+			}
 		}
 	}, []);
 

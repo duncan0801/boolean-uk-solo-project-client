@@ -9,7 +9,6 @@ import {
 } from "./globals";
 import jwtDecode from "jwt-decode";
 
-const tokenFromStorage = localStorage.getItem("token");
 const useStore = create(
 	devtools((set, get) => ({
 		//AUTH
@@ -34,6 +33,7 @@ const useStore = create(
 		requestedLobbyId: "",
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
 		getUserById: (id) => {
+			const tokenFromStorage = localStorage.getItem("token");
 			fetch(`http://localhost:8000/users/${id}`, {
 				method: "GET",
 				headers: {
@@ -44,6 +44,20 @@ const useStore = create(
 				.then((user) => {
 					console.log("fetched user", user.msg);
 					get().setCurrentUser(user);
+				});
+		},
+		fetchLobbiesByUserId: () => {
+			const tokenFromStorage = localStorage.getItem("token");
+			console.log("tokenFromStorage", tokenFromStorage);
+			fetch(`http://localhost:8000/lobbies/`, {
+				method: "GET",
+				headers: {
+					authorization: `Bearer ${tokenFromStorage}`,
+				},
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
 				});
 		},
 
@@ -147,7 +161,7 @@ const useStore = create(
 
 						get().setAuthenticatedUser(user);
 
-						localStorage.setItem("token", JSON.stringify(token));
+						localStorage.setItem("token", token);
 
 						// Push to their lobby library
 					}
@@ -170,7 +184,7 @@ const useStore = create(
 						const user = jwtDecode(token);
 						get().setAuthenticatedUser(user);
 
-						localStorage.setItem("token", JSON.stringify(token));
+						localStorage.setItem("token", token);
 
 						//Push to their lobby library
 					}
