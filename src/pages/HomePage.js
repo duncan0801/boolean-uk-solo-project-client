@@ -16,7 +16,7 @@ function HomePage() {
 					<ul>
 						<li
 							className={
-								tabIndex === 1 ? "active-tab" : "inactive-tab"
+								tabIndex === 1 ? "active-tab" : "inactive-tab left"
 							}
 							onClick={() => setTabIndex(1)}
 						>
@@ -24,7 +24,7 @@ function HomePage() {
 						</li>
 						<li
 							className={
-								tabIndex === 2 ? "active-tab" : "inactive-tab"
+								tabIndex === 2 ? "active-tab" : "inactive-tab right"
 							}
 							onClick={() => setTabIndex(2)}
 						>

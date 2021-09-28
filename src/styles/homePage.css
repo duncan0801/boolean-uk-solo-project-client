@@ -17,7 +17,7 @@
 	height: 80vh;
 	width: 80vw;
 
-	background-color: var(--section-background-color);
+	background-color: #ffffff38;
 
 	border-radius: 20px;
 }
@@ -41,13 +41,18 @@
 	background-color: none;
 }
 
-.inactive-tab {
-	background-color: none;
+.inactive-tab.left {
+	background-color: rgba(0, 0, 0, 0.274);
 	border-bottom: 3px solid transparent;
+	border-top-left-radius: 20px;
+}
+.inactive-tab.right {
+	background-color: rgba(0, 0, 0, 0.274);
+	border-bottom: 3px solid transparent;
+	border-top-right-radius: 20px;
 }
 
 .active-tab {
-	background-color: rgba(255, 255, 255, 0.219);
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
 }
