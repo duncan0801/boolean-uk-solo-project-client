@@ -20,6 +20,7 @@ function LobbyPage() {
 	const localToken = localStorage.getItem("token");
 
 	useEffect(() => {
+		console.log(lobbyId);
 		fetchLobbyById(lobbyId);
 	}, []);
 

@@ -3,15 +3,13 @@ import { useParams } from "react-router";
 import useStore from "../store";
 import "../styles/chat.css";
 
-function MessageBubble({ userName, content }) {
-	if (userName && content) {
-		return (
-			<div className="message-bubble">
-				<p className="username">{userName}</p>
-				<p className="message-content">{content}</p>
-			</div>
-		);
-	}
+function MessageBubble({ username, content }) {
+	return (
+		<div className="message-bubble">
+			<p className="username">{username}</p>
+			<p className="message-content">{content}</p>
+		</div>
+	);
 }
 
 function Chat() {
@@ -22,6 +20,7 @@ function Chat() {
 	const messages = useStore((state) => state.messages);
 	const lobbyUsers = useStore((state) => state.lobbyUsers);
 	const fetchLobbyMessages = useStore((state) => state.fetchLobbyMessages);
+	const authenticatedUser = useStore((state) => state.authenticatedUser);
 
 	useEffect(() => {
 		console.log(lobbyId);
@@ -31,15 +30,14 @@ function Chat() {
 	function handleOnSubmit(event) {
 		event.preventDefault();
 
-		const userAsJSON = localStorage.getItem("user");
-		const userName = JSON.parse(userAsJSON);
-
 		const postBody = {
-			userName: userName,
+			userId: authenticatedUser.id,
 			lobbyId: lobbyId,
 			content: messageTextField,
 		};
-		postAMessage(postBody).then((data) => {});
+		postAMessage(postBody).then((data) => {
+			console.log(data);
+		});
 		setMessageTextField("");
 	}
 	function handleOnChange(event) {
@@ -59,7 +57,7 @@ function Chat() {
 							if (userForMessage) {
 								return (
 									<MessageBubble
-										userName={userForMessage.userName}
+										username={userForMessage.username}
 										content={message.content}
 									/>
 								);

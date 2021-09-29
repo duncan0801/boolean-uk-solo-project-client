@@ -86,7 +86,9 @@ const useStore = create(
 				})
 				.then((lobby) => {
 					get().setLobbyUsers(lobby.users);
+					console.log(lobby.users);
 					get().setLobbyId(lobby.id);
+					console.log(lobby.id);
 				})
 				.catch((error) => {
 					console.error(error);

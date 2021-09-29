@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 
 function LobbySlot({ lobby }) {
 	return (
-		<Link to={`/${lobby.id}`}>
+		<Link to={`lobby/${lobby.id}`}>
 			<div className="lobby-slot">
 				<p>Lobby Name: {lobby.name}</p>
 			</div>
