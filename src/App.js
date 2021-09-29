@@ -8,8 +8,8 @@ import useStore from "./store";
 import NotAuthorized from "./pages/NotAuthorized";
 import { useEffect } from "react";
 import jwtDecode from "jwt-decode";
-const { v4: uuidv4 } = require("uuid");
-const SERVER = "http://localhost:8000";
+const backendURL = process.env.REACT_APP_BACKEND_API_URL
+const SERVER = backendURL;
 
 export const socket = socketClient(SERVER);
 

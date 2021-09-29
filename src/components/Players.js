@@ -28,8 +28,8 @@ function Players() {
 						{lobbyUsers.map((user) => {
 							return (
 								<PlayerSlot
-									key={user.userName}
-									name={user.userName}
+									key={user.username}
+									name={user.username}
 									avatarURL={user.avatarURL}
 								/>
 							);

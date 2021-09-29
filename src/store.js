@@ -8,6 +8,7 @@ import {
 	handleErrors,
 } from "./globals";
 import jwtDecode from "jwt-decode";
+const backendURL = process.env.REACT_APP_BACKEND_API_URL;
 
 const useStore = create(
 	devtools((set, get) => ({
@@ -30,13 +31,15 @@ const useStore = create(
 		setAnonymousUsername: (name) => set({ anonymousUsername: name }),
 
 		//LOBBY LIBRARY
+		requestedLobbyName: "",
+		setRequestedLobbyName: (name) => set({ requestedLobbyName: name }),
 		requestedLobbyId: "",
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
 		userLobbies: null,
 		setUserLobbies: (lobbies) => set({ userLobbies: lobbies }),
 		getUserById: (id) => {
 			const tokenFromStorage = localStorage.getItem("token");
-			fetch(`http://localhost:8000/users/${id}`, {
+			fetch(`${backendURL}/users/${id}`, {
 				method: "GET",
 				headers: {
 					authorization: `Bearer ${tokenFromStorage}`,
@@ -51,7 +54,7 @@ const useStore = create(
 		fetchLobbiesByUserId: () => {
 			const tokenFromStorage = localStorage.getItem("token");
 			console.log("tokenFromStorage", tokenFromStorage);
-			fetch(`http://localhost:8000/lobbies/`, {
+			fetch(`${backendURL}/lobbies/`, {
 				method: "GET",
 				headers: {
 					authorization: `Bearer ${tokenFromStorage}`,
@@ -59,6 +62,7 @@ const useStore = create(
 			})
 				.then((res) => res.json())
 				.then((data) => {
+					console.log("user lobbies: ", data);
 					get().setUserLobbies(data);
 				});
 		},
@@ -73,7 +77,7 @@ const useStore = create(
 		lobbyUsers: null,
 		setLobbyUsers: (users) => set({ lobbyUsers: users }),
 		fetchLobbyById: (lobbyId) => {
-			return fetch(`http://localhost:8000/lobbies/${lobbyId}`)
+			return fetch(`${backendURL}/lobbies/${lobbyId}`)
 				.then((res) => {
 					if (!res.ok) {
 						throw Error(res.statusText);
@@ -90,7 +94,7 @@ const useStore = create(
 		},
 		createLobby: (body) => {
 			const tokenFromStorage = localStorage.getItem("token");
-			return fetch(`http://localhost:8000/lobbies`, {
+			return fetch(`${backendURL}/lobbies`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -105,17 +109,19 @@ const useStore = create(
 					return res.json();
 				})
 				.then((lobby) => {
+					console.log("created lobby: ", lobby);
 					get().setLobbyId(lobby.id);
+					return lobby;
 				})
 				.catch((error) => {
 					console.error(error);
 				});
 		},
 		fetchLobbyUsers: (lobbyId) => {
-			fetch(`http://localhost:8000/users/${lobbyId}`);
+			fetch(`${backendURL}/users/${lobbyId}`);
 		},
 		addUserToLobby: (body) => {
-			return fetch(`http://localhost:8000/users`, {
+			return fetch(`${backendURL}/users`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -133,7 +139,7 @@ const useStore = create(
 				});
 		},
 		removeUserFromLobby: (userId) => {
-			fetch(`http://localhost:8000/users/${userId}`, {
+			fetch(`${backendURL}/users/${userId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
@@ -147,7 +153,7 @@ const useStore = create(
 		},
 		userSignUp: (body) => {
 			console.log("Body into create user function", body);
-			return fetch(`http://localhost:8000/signup`, {
+			return fetch(`${backendURL}/signup`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -173,7 +179,8 @@ const useStore = create(
 		},
 		userLogIn: (body) => {
 			console.log("Body into create user function", body);
-			return fetch(`http://localhost:8000/login`, {
+			console.log("backendURL", `${backendURL}/login`);
+			return fetch(`${backendURL}/login`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -201,7 +208,7 @@ const useStore = create(
 		messages: [],
 		setMessages: (messages) => set({ messages: messages }),
 		postAMessage: (body) => {
-			return fetch(`http://localhost:8000/messages`, {
+			return fetch(`${backendURL}/messages`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -229,7 +236,7 @@ const useStore = create(
 				});
 		},
 		fetchLobbyMessages: (lobbyId) => {
-			fetch(`http://localhost:8000/messages/${lobbyId}`)
+			fetch(`${backendURL}/messages/${lobbyId}`)
 				.then((res) => {
 					console.log(res);
 					if (!res.ok) {

@@ -17,7 +17,7 @@ function LobbyPage() {
 	const setRequestedLobbyId = useStore((state) => state.setRequestedLobbyId);
 	const leaveModal = useStore((state) => state.leaveModal);
 
-	const localUser = localStorage.getItem("user");
+	const localToken = localStorage.getItem("token");
 
 	useEffect(() => {
 		fetchLobbyById(lobbyId);
@@ -30,7 +30,7 @@ function LobbyPage() {
 		history.push("/");
 	}
 
-	if (!localUser) {
+	if (!localToken) {
 		return (
 			<>
 				<h1>
