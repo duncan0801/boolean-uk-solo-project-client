@@ -122,13 +122,13 @@ const useStore = create(
 		fetchLobbyUsers: (lobbyId) => {
 			fetch(`${backendURL}/users/${lobbyId}`);
 		},
-		addUserToLobby: (body) => {
+		addUserToLobby: (userId, lobbyId) => {
 			return fetch(`${backendURL}/users`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(body),
+				body: JSON.stringify({userId, lobbyId}),
 			})
 				.then((res) => {
 					if (!res.ok) {

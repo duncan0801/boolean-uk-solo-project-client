@@ -24,6 +24,7 @@ function LobbyLibrary() {
 	const userLobbies = useStore((state) => state.userLobbies);
 	const createLobby = useStore((state) => state.createLobby);
 	const requestedLobbyName = useStore((state) => state.requestedLobbyName);
+	const addUserToLobby = useStore((state) => state.addUserToLobby);
 	const setRequestedLobbyName = useStore(
 		(state) => state.setRequestedLobbyName
 	);
@@ -56,6 +57,13 @@ function LobbyLibrary() {
 	}
 	function handleJoinLobbyOnSubmit(event) {
 		event.preventDefault();
+
+		const lobbyId = requestedLobbyId;
+		const userId = authenticatedUser.id;
+
+		addUserToLobby(userId, lobbyId).then((userOnLobby) => {
+			history.push(`/lobby/${userOnLobby.lobbyId}`);
+		});
 	}
 	return (
 		<>
