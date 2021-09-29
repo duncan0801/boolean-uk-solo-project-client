@@ -37,9 +37,8 @@
 
 .lobby-slot-container {
 	overflow-y: scroll;
-	height: 350px;
 }
 
 .join-lobby-form input {
-	width: 60%;
+	/* width: 60%; */
 }

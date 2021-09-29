@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useStore from "../store";
 import { baseURL } from "../globals";
-
+const reactAppURL = process.env.REACT_APP_API_URL;
 function LobbyTitle() {
 	const lobbyId = useStore((state) => state.lobbyId);
 	const setLeaveModal = useStore((state) => state.setLeaveModal);
@@ -9,13 +9,13 @@ function LobbyTitle() {
 
 	function handleGetLobbyLinkOnClick() {
 		const link = `htttp://localhost:3000/${lobbyId}`;
-		navigator.clipboard.writeText(`http://localhost:3000/${lobbyId}`);
+		navigator.clipboard.writeText(`${reactAppURL}/${lobbyId}`);
 		alert(`${link} copied to clipboard`);
 	}
 
 	function handleLeaveLobbyOnClick() {
 		// 1. Render a are you sure you want to leave the lobby modal
-        removeUserFromLobby()
+		removeUserFromLobby();
 		setLeaveModal(true);
 	}
 	if (lobbyId) {

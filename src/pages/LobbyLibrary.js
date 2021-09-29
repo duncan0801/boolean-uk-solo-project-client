@@ -4,11 +4,11 @@ import JoinLobbyModal from "../components/JoinLobbyModal";
 import useStore from "../store";
 import { useEffect } from "react";
 
-function LobbySlot() {
+function LobbySlot({ lobby }) {
 	return (
-		<Link to="">
+		<Link to={`/${lobby.id}`}>
 			<div className="lobby-slot">
-				<p>LobbyId:</p>
+				<p>Lobby Name: {lobby.name}</p>
 			</div>
 		</Link>
 	);
@@ -19,6 +19,7 @@ function LobbyLibrary() {
 	const setRequestedLobbyId = useStore((state) => state.setRequestedLobbyId);
 	const getUserById = useStore((state) => state.getUserById);
 	const authenticatedUser = useStore((state) => state.authenticatedUser);
+	const userLobbies = useStore((state) => state.userLobbies);
 	const fetchLobbiesByUserId = useStore(
 		(state) => state.fetchLobbiesByUserId
 	);
@@ -28,25 +29,28 @@ function LobbyLibrary() {
 		fetchLobbiesByUserId();
 	}, [authenticatedUser]);
 
+	if (!userLobbies) {
+		return <h1>Loading...</h1>;
+	}
+	function handleOnSubmit(event) {
+        
+    }
 	return (
 		<>
 			<div className="lobby-library-container">
 				<div className="section-container">
 					<h2>Lobby Library</h2>
 					<div className="lobby-slot-container">
-						<LobbySlot />
-						<LobbySlot />
-						<LobbySlot />
-						<LobbySlot />
-						<LobbySlot />
-						<LobbySlot />
-						<LobbySlot />
-						<LobbySlot />
-						<LobbySlot />
+						{userLobbies.map((lobby) => {
+							return <LobbySlot lobby={lobby} />;
+						})}
 					</div>
 					<div className="buttons-container">
 						<button>Create New Lobby</button>
-						<form className="join-lobby-form">
+						<form
+							onSubmit={handleOnSubmit}
+							className="join-lobby-form"
+						>
 							<input
 								type="text"
 								placeholder="LobbyId"

@@ -32,6 +32,8 @@ const useStore = create(
 		//LOBBY LIBRARY
 		requestedLobbyId: "",
 		setRequestedLobbyId: (id) => set({ requestedLobbyId: id }),
+		userLobbies: null,
+		setUserLobbies: (lobbies) => set({ userLobbies: lobbies }),
 		getUserById: (id) => {
 			const tokenFromStorage = localStorage.getItem("token");
 			fetch(`http://localhost:8000/users/${id}`, {
@@ -57,7 +59,7 @@ const useStore = create(
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
+					get().setUserLobbies(data);
 				});
 		},
 
@@ -87,10 +89,12 @@ const useStore = create(
 				});
 		},
 		createLobby: (body) => {
+			const tokenFromStorage = localStorage.getItem("token");
 			return fetch(`http://localhost:8000/lobbies`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
+					authorization: `Bearer ${tokenFromStorage}`,
 				},
 				body: JSON.stringify(body),
 			})
