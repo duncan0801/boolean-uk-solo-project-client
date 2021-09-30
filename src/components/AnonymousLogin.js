@@ -1,4 +1,3 @@
-// import { socket } from "../App";
 import useStore from "../store";
 import { useHistory } from "react-router-dom";
 const { v4: uuidv4 } = require("uuid");
@@ -54,7 +53,7 @@ function AnonymousLogin() {
 	}
 
 	return (
-		<form onSubmit={(event) => handleOnSubmit(event, socket)}>
+		<form onSubmit={(event) => handleOnSubmit(event)}>
 			<input
 				placeholder="enter your nickname..."
 				type="text"

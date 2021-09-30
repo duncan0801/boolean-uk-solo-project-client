@@ -1,6 +1,5 @@
 import "./App.css";
 import HomePage from "./pages/HomePage";
-// import socketClient from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LobbyPage from "./pages/LobbyPage";
 import LobbyLibrary from "./pages/LobbyLibrary";
@@ -11,22 +10,13 @@ import jwtDecode from "jwt-decode";
 const backendURL = process.env.REACT_APP_BACKEND_API_URL
 const SERVER = backendURL;
 
-// export const socket = socketClient(SERVER);
 
 function App() {
 	const authenticatedUser = useStore((state) => state.authenticatedUser);
 	const setAuthenticatedUser = useStore(
 		(state) => state.setAuthenticatedUser
 	);
-	// socket.on("connection", (socket) => {
-	// 	console.log(`I'm connected to the back end. Socket ID: ${socket.id}`);
-	// });
-
-	// socket.emit("test", "blah", 10, () => {});
-	// socket.on("received-test", (message) => {
-	// 	console.log(message);
-	// });
-	// // socket.join(uuidv4());
+	
 	useEffect(() => {
 		if (authenticatedUser) return;
 
