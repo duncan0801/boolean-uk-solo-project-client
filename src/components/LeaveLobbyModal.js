@@ -15,7 +15,8 @@ function LeaveLobbyModal() {
 			(deletedUserOnLobby) => {
 				if (deletedUserOnLobby) {
 					setLeaveModal(false);
-					history.push("/lobby-library");
+					console.log("deletedUserOnLobby", deletedUserOnLobby);
+					// history.push("/lobby-library");
 				} else {
 					setLeaveModal(false);
 					alert("Remove user unsuccessful");

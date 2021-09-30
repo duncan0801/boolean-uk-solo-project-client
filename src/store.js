@@ -142,13 +142,13 @@ const useStore = create(
 				});
 		},
 		removeUserFromLobby: (lobbyId, userId) => {
-			return fetch(`${backendURL}/${lobbyId}`, {
+			return fetch(`${backendURL}/lobbies/${lobbyId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({ userId: userId }),
-			});
+			}).then((resp) => resp.json());
 		},
 		userSignUp: (body) => {
 			console.log("Body into create user function", body);
