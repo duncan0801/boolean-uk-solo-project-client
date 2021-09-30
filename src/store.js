@@ -53,7 +53,6 @@ const useStore = create(
 		},
 		fetchLobbiesByUserId: () => {
 			const tokenFromStorage = localStorage.getItem("token");
-			console.log("tokenFromStorage", tokenFromStorage);
 			fetch(`${backendURL}/lobbies/`, {
 				method: "GET",
 				headers: {
@@ -63,7 +62,9 @@ const useStore = create(
 				.then((res) => res.json())
 				.then((data) => {
 					console.log("user lobbies: ", data);
-					get().setUserLobbies(data);
+					if (data) {
+						get().setUserLobbies(data);
+					}
 				});
 		},
 
@@ -128,7 +129,7 @@ const useStore = create(
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({userId, lobbyId}),
+				body: JSON.stringify({ userId, lobbyId }),
 			})
 				.then((res) => {
 					if (!res.ok) {
@@ -140,17 +141,13 @@ const useStore = create(
 					console.error(error);
 				});
 		},
-		removeUserFromLobby: (userId) => {
-			fetch(`${backendURL}/users/${userId}`, {
+		removeUserFromLobby: (lobbyId, userId) => {
+			return fetch(`${backendURL}/${lobbyId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 				},
-			}).then(() => {
-				const filteredUsers = get().lobbyUsers.filter(
-					(user) => user.id !== userId
-				);
-				get().setLobbyUsers(filteredUsers);
+				body: JSON.stringify({ userId: userId }),
 			});
 		},
 		userSignUp: (body) => {

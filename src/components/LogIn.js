@@ -18,7 +18,7 @@ function LogIn() {
 		};
 
 		userLogIn(userBody).then(() => {
-			history.push("/lobbies");
+			history.push("/lobby-library");
 		});
 	}
 	return (

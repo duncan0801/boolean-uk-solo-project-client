@@ -1,0 +1,9 @@
+header {
+	background-color: darkcyan;
+	margin: 0;
+	/* position: absolute;
+	top: 0; */
+	width: 100vw;
+	display: grid;
+	grid-template-columns: 1fr auto;
+}

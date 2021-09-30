@@ -46,7 +46,7 @@ function App() {
 					<Route exact path="/">
 						<HomePage />
 					</Route>
-					<Route exact path="/lobbies">
+					<Route exact path="/lobby-library">
 						{authenticatedUser ? (
 							<LobbyLibrary />
 						) : (

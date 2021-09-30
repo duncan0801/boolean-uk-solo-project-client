@@ -4,6 +4,7 @@ import JoinLobbyModal from "../components/JoinLobbyModal";
 import useStore from "../store";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Header from "../components/Header";
 const { v4: uuidv4 } = require("uuid");
 
 function LobbySlot({ lobby }) {
@@ -67,6 +68,7 @@ function LobbyLibrary() {
 	}
 	return (
 		<>
+			<Header />
 			<div className="lobby-library-container">
 				<div className="section-container">
 					<h2>Lobby Library</h2>

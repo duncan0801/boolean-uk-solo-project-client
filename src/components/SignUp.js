@@ -19,7 +19,7 @@ function SignUp() {
 			avatarURL: `https://robohash.org/${usernameField}`,
 		};
 		userSignUp(userBody).then(() => {
-			history.push("/lobbies");
+			history.push("/lobby-library");
 		});
 	}
 	return (

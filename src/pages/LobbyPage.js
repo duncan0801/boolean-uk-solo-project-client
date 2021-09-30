@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Chat from "../components/Chat";
 import Games from "../components/Games";
+import Header from "../components/Header";
 import LeaveLobbyModal from "../components/LeaveLobbyModal";
 import LobbyTitle from "../components/LobbyTitle";
 import Players from "../components/Players";
@@ -12,6 +13,7 @@ import "../styles/lobbyPage.css";
 function LobbyPage() {
 	const history = useHistory();
 	const { lobbyId } = useParams();
+	const setLobbyId = useStore((state) => state.setLobbyId);
 	const fetchLobbyById = useStore((state) => state.fetchLobbyById);
 	const setTabIndex = useStore((state) => state.setTabIndex);
 	const setRequestedLobbyId = useStore((state) => state.setRequestedLobbyId);
@@ -22,6 +24,7 @@ function LobbyPage() {
 	useEffect(() => {
 		console.log(lobbyId);
 		fetchLobbyById(lobbyId);
+		setLobbyId(lobbyId);
 	}, []);
 
 	function handleRedirectToLobbyPage() {
@@ -53,6 +56,7 @@ function LobbyPage() {
 	// fetch Lobby here and set all the state for players and lobbyId
 	return (
 		<>
+			<Header />
 			<div className="lobby-container">
 				<LobbyTitle />
 				<Players />
