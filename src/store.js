@@ -47,7 +47,6 @@ const useStore = create(
 			})
 				.then((res) => res.json())
 				.then((user) => {
-					console.log("fetched user", user.msg);
 					get().setCurrentUser(user);
 				});
 		},
@@ -61,7 +60,6 @@ const useStore = create(
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log("user lobbies: ", data);
 					if (data) {
 						get().setUserLobbies(data);
 					}
@@ -87,9 +85,8 @@ const useStore = create(
 				})
 				.then((lobby) => {
 					get().setLobbyUsers(lobby.users);
-					console.log(lobby.users);
+
 					get().setLobbyId(lobby.id);
-					console.log(lobby.id);
 				})
 				.catch((error) => {
 					console.error(error);
@@ -112,7 +109,6 @@ const useStore = create(
 					return res.json();
 				})
 				.then((lobby) => {
-					console.log("created lobby: ", lobby);
 					get().setLobbyId(lobby.id);
 					return lobby;
 				})
@@ -151,7 +147,6 @@ const useStore = create(
 			}).then((resp) => resp.json());
 		},
 		userSignUp: (body) => {
-			console.log("Body into create user function", body);
 			return fetch(`${backendURL}/signup`, {
 				method: "POST",
 				headers: {
@@ -162,8 +157,6 @@ const useStore = create(
 				.then((res) => res.json())
 				.then((data) => {
 					const token = data.token;
-
-					console.log("Sign up fetch:", token);
 
 					if (token) {
 						const user = jwtDecode(token);
@@ -177,8 +170,6 @@ const useStore = create(
 				});
 		},
 		userLogIn: (body) => {
-			console.log("Body into create user function", body);
-			console.log("backendURL", `${backendURL}/login`);
 			return fetch(`${backendURL}/login`, {
 				method: "POST",
 				headers: {
@@ -189,8 +180,6 @@ const useStore = create(
 				.then((res) => res.json())
 				.then((token) => {
 					if (token) {
-						console.log("token: ", token);
-
 						const user = jwtDecode(token);
 						get().setAuthenticatedUser(user);
 
@@ -223,7 +212,6 @@ const useStore = create(
 				.then((data) => {
 					const messages = get().messages;
 					const setMessages = get().setMessages;
-					console.log("data", data);
 					if (messages.length === 0) {
 						setMessages([data]);
 					} else {
@@ -237,7 +225,6 @@ const useStore = create(
 		fetchLobbyMessages: (lobbyId) => {
 			fetch(`${backendURL}/messages/${lobbyId}`)
 				.then((res) => {
-					console.log(res);
 					if (!res.ok) {
 						throw Error(res.statusText);
 					}

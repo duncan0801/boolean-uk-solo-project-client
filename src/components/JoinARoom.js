@@ -32,9 +32,7 @@ function JoinARoom() {
 			addUserToLobby(reqBody).then((data) => {
 				if (data) {
 					history.push(`/lobby/${requestedLobbyId}`);
-                    console.log(data);
 				}
-				console.log(data);
 			});
 		});
 

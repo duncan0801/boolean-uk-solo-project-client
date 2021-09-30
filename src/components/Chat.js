@@ -23,7 +23,7 @@ function Chat() {
 	const authenticatedUser = useStore((state) => state.authenticatedUser);
 
 	useEffect(() => {
-		console.log(lobbyId);
+	
 		fetchLobbyMessages(lobbyId);
 	}, []);
 
@@ -35,9 +35,7 @@ function Chat() {
 			lobbyId: lobbyId,
 			content: messageTextField,
 		};
-		postAMessage(postBody).then((data) => {
-			console.log(data);
-		});
+		postAMessage(postBody)
 		setMessageTextField("");
 	}
 	function handleOnChange(event) {

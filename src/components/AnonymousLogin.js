@@ -36,7 +36,6 @@ function AnonymousLogin() {
 
 			createLobby(postBody)
 				.then((response) => {
-					console.log("response from create lobby", response);
 					setLobbyId(lobbyId);
 				})
 				.then(() => history.push(`/lobby/${lobbyId}`));

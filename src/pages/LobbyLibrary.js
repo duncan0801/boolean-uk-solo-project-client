@@ -49,7 +49,6 @@ function LobbyLibrary() {
 		};
 		createLobby(body).then((lobby) => {
 			if (lobby) {
-				console.log("lobby: ", lobby);
 				history.push(`/lobby/${lobby.id}`);
 			} else {
 				alert("lobby could not be created");
