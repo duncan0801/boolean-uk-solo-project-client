@@ -1,4 +1,4 @@
-import { socket } from "../App";
+// import { socket } from "../App";
 import useStore from "../store";
 import { useHistory } from "react-router-dom";
 const { v4: uuidv4 } = require("uuid");
@@ -13,7 +13,7 @@ function AnonymousLogin() {
 	const setLobbyId = useStore((state) => state.setLobbyId);
 	const createLobby = useStore((state) => state.createLobby);
 
-	function handleOnSubmit(event, socket) {
+	function handleOnSubmit(event) {
 		event.preventDefault();
 		const lobbyId = uuidv4();
 		let avatarURL = "";

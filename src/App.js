@@ -1,6 +1,6 @@
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import socketClient from "socket.io-client";
+// import socketClient from "socket.io-client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LobbyPage from "./pages/LobbyPage";
 import LobbyLibrary from "./pages/LobbyLibrary";
@@ -11,7 +11,7 @@ import jwtDecode from "jwt-decode";
 const backendURL = process.env.REACT_APP_BACKEND_API_URL
 const SERVER = backendURL;
 
-export const socket = socketClient(SERVER);
+// export const socket = socketClient(SERVER);
 
 function App() {
 	const authenticatedUser = useStore((state) => state.authenticatedUser);
