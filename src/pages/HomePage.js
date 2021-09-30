@@ -1,6 +1,3 @@
-import AnonymousLogin from "../components/AnonymousLogin";
-import JoinARoom from "../components/JoinARoom";
-import AuthenticatedLogin from "../components/JoinARoom";
 import LogIn from "../components/LogIn";
 import SignUp from "../components/SignUp";
 import useStore from "../store";
@@ -41,7 +38,7 @@ function HomePage() {
 								: "content anonymous-login"
 						}
 					>
-						{/* <AnonymousLogin /> */}
+					
 						<SignUp />
 					</div>
 					<div
@@ -51,7 +48,7 @@ function HomePage() {
 								: "content authenticated-login"
 						}
 					>
-						{/* <JoinARoom /> */}
+					
 						<LogIn />
 					</div>
 				</div>
