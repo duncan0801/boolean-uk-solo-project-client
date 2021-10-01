@@ -1,5 +1,5 @@
 import "../styles/header.css";
-const { useHistory } = require("react-router-dom");
+const { useHistory, Link } = require("react-router-dom");
 
 function Header() {
 	const history = useHistory();
@@ -10,7 +10,8 @@ function Header() {
 	return (
 		<header>
 			<h1>Social Game Lobby</h1>
-			<button onClick={handleOnClick}>Log Out</button>
+			<Link to="/lobby-library">My Lobby Library</Link>
+			<button className="logout-button" onClick={handleOnClick}>Log Out</button>
 		</header>
 	);
 }

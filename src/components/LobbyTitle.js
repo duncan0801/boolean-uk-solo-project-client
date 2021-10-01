@@ -7,10 +7,10 @@ function LobbyTitle() {
 	const setLeaveModal = useStore((state) => state.setLeaveModal);
 	const removeUserFromLobby = useStore((state) => state.removeUserFromLobby);
 
-	function handleGetLobbyLinkOnClick() {
-		const link = `htttp://localhost:3000/${lobbyId}`;
-		navigator.clipboard.writeText(`${reactAppURL}/${lobbyId}`);
-		alert(`${link} copied to clipboard`);
+	function handleGetLobbyIdOnClick() {
+		// const link = `htttp://localhost:3000/${lobbyId}`;
+		navigator.clipboard.writeText(lobbyId);
+		alert(`${lobbyId} copied to clipboard`);
 	}
 
 	function handleLeaveLobbyOnClick() {
@@ -25,7 +25,7 @@ function LobbyTitle() {
 				<div>
 					<button
 						className="get-lobby-link"
-						onClick={handleGetLobbyLinkOnClick}
+						onClick={handleGetLobbyIdOnClick}
 					>
 						Copy Lobby Link
 					</button>

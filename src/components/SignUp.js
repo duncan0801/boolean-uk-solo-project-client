@@ -35,7 +35,7 @@ function SignUp() {
 					value={usernameField}
 				></input>
 				<input
-					type="text"
+					type="password"
 					className="password"
 					id="password"
 					name="password"
@@ -43,7 +43,7 @@ function SignUp() {
 					onChange={(event) => setPasswordField(event.target.value)}
 					value={passwordField}
 				></input>
-				<button>Sign In</button>
+				<button className="login-logout-button">Sign In</button>
 			</div>
 		</form>
 	);

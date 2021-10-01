@@ -34,7 +34,7 @@ function LogIn() {
 					value={usernameField}
 				></input>
 				<input
-					type="text"
+					type="password"
 					className="password"
 					id="password"
 					name="password"
@@ -42,7 +42,7 @@ function LogIn() {
 					onChange={(event) => setPasswordField(event.target.value)}
 					value={passwordField}
 				></input>
-				<button>Log In</button>
+				<button className="login-logout-button">Log In</button>
 			</div>
 		</form>
 	);

@@ -49,6 +49,7 @@ function LobbyLibrary() {
 		};
 		createLobby(body).then((lobby) => {
 			if (lobby) {
+				setRequestedLobbyName("");
 				history.push(`/lobby/${lobby.id}`);
 			} else {
 				alert("lobby could not be created");
@@ -62,6 +63,7 @@ function LobbyLibrary() {
 		const userId = authenticatedUser.id;
 
 		addUserToLobby(userId, lobbyId).then((userOnLobby) => {
+            setRequestedLobbyId("")
 			history.push(`/lobby/${userOnLobby.lobbyId}`);
 		});
 	}

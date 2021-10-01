@@ -24,3 +24,7 @@
 	width: 100px;
 	height: 30px;
 }
+
+.login-logout-button:hover {
+	background-color: rgb(93, 185, 1);
+}
