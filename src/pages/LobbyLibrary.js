@@ -11,7 +11,9 @@ function LobbySlot({ lobby }) {
 	return (
 		<Link to={`lobby/${lobby.id}`}>
 			<div className="lobby-slot">
-				<p>Lobby Name: {lobby.name}</p>
+				<p>
+					Lobby Name: <span>{lobby.name}</span>
+				</p>
 			</div>
 		</Link>
 	);
@@ -63,51 +65,57 @@ function LobbyLibrary() {
 		const userId = authenticatedUser.id;
 
 		addUserToLobby(userId, lobbyId).then((userOnLobby) => {
-            setRequestedLobbyId("")
+			setRequestedLobbyId("");
 			history.push(`/lobby/${userOnLobby.lobbyId}`);
 		});
 	}
 	return (
 		<>
-			<Header />
-			<div className="lobby-library-container">
-				<div className="section-container">
-					<h2>Lobby Library</h2>
-					<div className="lobby-slot-container">
-						{userLobbies.map((lobby) => {
-							return <LobbySlot key={lobby.name} lobby={lobby} />;
-						})}
-					</div>
-					<div className="buttons-container">
-						<form
-							className="create-lobby-form"
-							onSubmit={handleCreateLobbyOnSubmit}
-						>
-							<input
-								type="text"
-								placeholder="Lobby Name"
-								value={requestedLobbyName}
-								onChange={(event) =>
-									setRequestedLobbyName(event.target.value)
-								}
-							/>
-							<button>Create New Lobby</button>
-						</form>
+			<div className="page-container">
+				<Header />
+				<div className="lobby-library-container">
+					<div className="section-container">
+						<h2>Lobby Library</h2>
+						<div className="lobby-slot-container">
+							{userLobbies.map((lobby) => {
+								return (
+									<LobbySlot key={lobby.name} lobby={lobby} />
+								);
+							})}
+						</div>
+						<div className="buttons-container">
+							<form
+								className="create-lobby-form"
+								onSubmit={handleCreateLobbyOnSubmit}
+							>
+								<input
+									type="text"
+									placeholder="Lobby Name"
+									value={requestedLobbyName}
+									onChange={(event) =>
+										setRequestedLobbyName(
+											event.target.value
+										)
+									}
+								/>
+								<button>Create New Lobby</button>
+							</form>
 
-						<form
-							onSubmit={handleJoinLobbyOnSubmit}
-							className="join-lobby-form"
-						>
-							<input
-								type="text"
-								placeholder="LobbyId"
-								value={requestedLobbyId}
-								onChange={(event) =>
-									setRequestedLobbyId(event.target.value)
-								}
-							/>
-							<button>Join Lobby</button>
-						</form>
+							<form
+								onSubmit={handleJoinLobbyOnSubmit}
+								className="join-lobby-form"
+							>
+								<input
+									type="text"
+									placeholder="LobbyId"
+									value={requestedLobbyId}
+									onChange={(event) =>
+										setRequestedLobbyId(event.target.value)
+									}
+								/>
+								<button>Join Lobby</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

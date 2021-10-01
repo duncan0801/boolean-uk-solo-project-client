@@ -2,6 +2,8 @@
 	display: grid;
 	gap: 5px;
 	padding: 5px;
+	height: 80%;
+	overflow-y: scroll;
 }
 
 .player-slot {
@@ -16,8 +18,8 @@
 }
 
 .player-slot .image-container {
-	background: #21FA90;
-    border-radius: 50%;
+	background: #21fa90;
+	border-radius: 50%;
 }
 .player-slot .image-container img {
 	width: 70px;

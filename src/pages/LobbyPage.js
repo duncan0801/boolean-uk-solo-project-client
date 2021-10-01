@@ -55,14 +55,16 @@ function LobbyPage() {
 	// fetch Lobby here and set all the state for players and lobbyId
 	return (
 		<>
-			<Header />
-			<div className="lobby-container">
-				<LobbyTitle />
-				<Players />
-				<Games />
-				<Chat />
+			<div className="lobby-page-container">
+				<Header />
+				<div className="lobby-container">
+					<LobbyTitle />
+					<Players />
+					<Games />
+					<Chat />
+				</div>
+				{leaveModal ? <LeaveLobbyModal /> : null}
 			</div>
-			{leaveModal ? <LeaveLobbyModal /> : null}
 		</>
 	);
 }

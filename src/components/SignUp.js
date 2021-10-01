@@ -19,6 +19,8 @@ function SignUp() {
 			avatarURL: `https://robohash.org/${usernameField}`,
 		};
 		userSignUp(userBody).then(() => {
+            setUsernameField("")
+            setPasswordField("")
 			history.push("/lobby-library");
 		});
 	}

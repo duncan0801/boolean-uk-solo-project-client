@@ -18,6 +18,8 @@ function LogIn() {
 		};
 
 		userLogIn(userBody).then(() => {
+            setUsernameField("")
+            setPasswordField("")
 			history.push("/lobby-library");
 		});
 	}
