@@ -9,6 +9,8 @@
 	height: 65vh;
 	border-radius: 20px;
 	margin: 20px;
+	display: grid;
+	place-items: center;
 }
 .lobby-title-section {
 	grid-area: title;

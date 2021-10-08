@@ -27,7 +27,7 @@ function LobbyTitle() {
 						className="get-lobby-link"
 						onClick={handleGetLobbyIdOnClick}
 					>
-						Copy Lobby Link
+						Copy Lobby ID
 					</button>
 					<button
 						className="leave-lobby"
