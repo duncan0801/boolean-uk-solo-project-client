@@ -14,11 +14,12 @@
 	color: #d5b3db;
 	display: grid;
 	grid-template-columns: auto 1fr;
-	place-content: center;
+	place-items: center;
+	padding: 5px;
 }
 
 .player-slot .image-container {
-	background: #21fa90;
+	background: rgba(255, 255, 255, 0.726);
 	border-radius: 50%;
 }
 .player-slot .image-container img {

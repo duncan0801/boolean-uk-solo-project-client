@@ -15,7 +15,11 @@ ul {
 
 body {
 	background-image: linear-gradient(to right bottom, #c34161, #5b2198);
-	height: 100vh;
+
 	--section-background-color: #1f1f1f4d;
 	--section-border-color: #ffffff8e;
+}
+main {
+	height: 100vh;
+	width: 100vw;
 }

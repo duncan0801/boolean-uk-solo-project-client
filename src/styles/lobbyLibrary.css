@@ -34,6 +34,10 @@
 .lobby-slot:hover {
 	background-color: #ffffff8c;
 }
+.lobby-id-title {
+	display: grid;
+	place-content: center;
+}
 
 .lobby-slot span {
 	color: rgb(0, 255, 213);

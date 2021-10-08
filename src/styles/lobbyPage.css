@@ -47,4 +47,15 @@
 	height: calc(100% - 60px);
 	border-radius: 30px;
 	width: 80%;
+	overflow-y: hidden;
+}
+.button-container {
+	display: grid;
+	place-items: center;
+}
+.title-buttons {
+	border: none;
+	border-radius: 10px;
+	background-color: #79A9D1;
+	padding: 10px;
 }

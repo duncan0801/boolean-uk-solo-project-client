@@ -20,17 +20,16 @@ function LobbyTitle() {
 	}
 	if (lobbyId) {
 		return (
-			<section className="lobby-title-section">
-				<h1>Lobby Id: {lobbyId}</h1>
-				<div>
+			<section className="lobby-title-section lobby-id-title">
+				<div className="button-container">
 					<button
-						className="get-lobby-link"
+						className="title-buttons get-lobby-link"
 						onClick={handleGetLobbyIdOnClick}
 					>
 						Copy Lobby ID
 					</button>
 					<button
-						className="leave-lobby"
+						className="title-buttons leave-lobby"
 						onClick={handleLeaveLobbyOnClick}
 					>
 						Leave Lobby

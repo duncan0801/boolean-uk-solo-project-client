@@ -9,7 +9,12 @@ header {
 	gap: 30px;
 	place-items: center;
 }
-
+.logout-button {
+    border: none;
+	border-radius: 10px;
+	background-color: rgb(255, 0, 85);
+	padding: 10px;
+}
 .logout-button:hover {
 	width: 70px;
 	height: 25px;
